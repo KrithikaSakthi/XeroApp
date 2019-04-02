@@ -36,14 +36,18 @@ public class UploadImage{
 		driver.findElement(By.xpath("//span[@class='xrh-verticalmenuitem--subheading']")).click();
 		
 		//upload image
-		driver.findElement(By.xpath("//span[contains(text(),'Upload Image')]")).click();
+		WebElement upload = driver.findElement(By.xpath("//span[contains(text(),'Upload Image')]"));
+		ClickAction.clickButton(upload);
 		
 		//browse
 		WebElement browse = driver.findElement(By.xpath("//input[@name='file']"));
 		Thread.sleep(2000);
-		//browse.sendKeys("/Users⁩/sakeerthi/⁨Desktop/baby.jpeg⁩");
-		Runtime.getRuntime().exec("osascript " + "/Users⁩/sakeerthi/⁨Documents/image.scpt");
-		driver.findElement(By.xpath("//span[@id='button-1178-btnInnerEl']")).click();
+		browse.sendKeys("/Users/sakeerthi/Documents/baby.jpeg");
+		Thread.sleep(3000);
+		//Runtime.getRuntime().exec("osascript " + "/Users⁩/sakeerthi/⁨Documents/image.scpt");
+		
+		WebElement upload1 = driver.findElement(By.xpath("//span[@id='button-1178-btnInnerEl']"));
+		ClickAction.clickButton(upload1);
 		LaunchApp.getLogger().log(LogStatus.PASS, "Image Uploaded");
 		
 		LaunchApp.exitApplication();

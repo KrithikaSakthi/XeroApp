@@ -12,7 +12,7 @@ import utilities.ExcelData;
 public class TestXeroApp {
 
 	public static void main(String[] args) throws Exception {
-		String dt_path = "/Users/sakeerthi/Documents/Workspace/XeroComApp/src/test/java/ModuleData.xls";
+		String dt_path = "/Users/sakeerthi/Documents/ModuleData.xls";
 		String[][] excelData = ExcelData.readExcelData(dt_path, "Sheet1");
 		
 		Login.testLoginTestCase(excelData);
