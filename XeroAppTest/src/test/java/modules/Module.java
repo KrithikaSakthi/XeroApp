@@ -21,17 +21,17 @@ public class Module {
 	//enter email address
 	WebElement username = driver.findElement(By.id("email"));
 	WebElements.enterText(username, excelData[1][1]);
-	LaunchApp.getLogger().log(LogStatus.PASS, " Username Entered");
+	//LaunchApp.getLogger().log(LogStatus.PASS, " Username Entered");
 
 	//enter the password
 	WebElement password = driver.findElement(By.xpath("//input[@id='password']"));
 	WebElements.enterText(password, excelData[1][2]);
-	LaunchApp.getLogger().log(LogStatus.PASS, "password Entered");
+	//LaunchApp.getLogger().log(LogStatus.PASS, "password Entered");
 	
 	//click login
 	WebElement login = driver.findElement(By.id("submitButton"));
 	ClickAction.clickButton(login);
-	LaunchApp.getLogger().log(LogStatus.PASS, "Logged in");
+	LaunchApp.getLogger().log(LogStatus.PASS, "Logged in with the Valid Credentials");
 	}
 
 

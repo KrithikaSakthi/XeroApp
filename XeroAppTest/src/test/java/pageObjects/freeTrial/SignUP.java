@@ -16,7 +16,7 @@ public class SignUP{
 	
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/SignUp.html","SignUp");
+		LaunchApp.extentReports("SignUp");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		

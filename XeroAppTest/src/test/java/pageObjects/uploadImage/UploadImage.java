@@ -14,11 +14,13 @@ import utilities.LaunchApp;
 import utilities.WebElements;
 
 public class UploadImage{
+	
+	
 
 	public static void test(String[][] excelData) throws Exception {
 		
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/uploadimage.html","uploadimage");
+		LaunchApp.extentReports("UploadImage");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		LaunchApp.waitTime(30);
@@ -33,12 +35,15 @@ public class UploadImage{
 		Thread.sleep(2000);
 		
 		//User profile
-		driver.findElement(By.xpath("//span[@class='xrh-verticalmenuitem--subheading']")).click();
+		WebElement userProfile = driver.findElement(By.xpath("//span[@class='xrh-verticalmenuitem--subheading']"));
+		ClickAction.getAction(userProfile);
+		Thread.sleep(2000);
 		
 		//upload image
-		WebElement upload = driver.findElement(By.xpath("//span[contains(text(),'Upload Image')]"));
+		driver.findElement(By.xpath("//span[contains(text(),'Upload Image')]")).click();
+		/*WebElement upload = driver.findElement(By.xpath("//span[contains(text(),'Upload Image')]"));
 		ClickAction.clickButton(upload);
-		
+		Thread.sleep(3000);*/
 		//browse
 		WebElement browse = driver.findElement(By.xpath("//input[@name='file']"));
 		Thread.sleep(2000);
@@ -46,9 +51,9 @@ public class UploadImage{
 		Thread.sleep(3000);
 		//Runtime.getRuntime().exec("osascript " + "/Users⁩/sakeerthi/⁨Documents/image.scpt");
 		
-		WebElement upload1 = driver.findElement(By.xpath("//span[@id='button-1178-btnInnerEl']"));
-		ClickAction.clickButton(upload1);
-		LaunchApp.getLogger().log(LogStatus.PASS, "Image Uploaded");
+		WebElement uploaded = driver.findElement(By.xpath("//span[@id='button-1178-btnInnerEl']"));
+		ClickAction.clickButton(uploaded);
+		LaunchApp.getLogger().log(LogStatus.PASS, "Image got Uploaded");
 		
 		LaunchApp.exitApplication();
 		

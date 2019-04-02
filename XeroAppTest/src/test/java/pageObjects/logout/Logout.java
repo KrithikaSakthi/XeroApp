@@ -15,7 +15,7 @@ public class Logout{
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/Logout.html","Logout");
+		LaunchApp.extentReports("logout");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		

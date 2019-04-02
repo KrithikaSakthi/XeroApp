@@ -1,0 +1,4959 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+ExtentReports Library 2.40.2 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
+Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
+Documentation: http://extentreports.relevantcodes.com 
+-->
+
+<meta charset='UTF-8' /> 
+<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+<meta name='robots' content='noodp, noydir' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+
+<title>
+ExtentReports 2.0
+</title>
+
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+<link href='https://cdn.rawgit.com/anshooarora/extentreports/e4f8ea1de961161791c01b99a71a1e17f81125cf/cdn/extent.css' type='text/css' rel='stylesheet' />
+
+<style>
+
+            
+                
+            
+        
+</style>
+</head>
+
+
+<body class='extent standard hide-overflow'>
+<!-- nav -->
+<nav>
+<div class='logo-container'>
+<a class='logo-content' href='http://extentreports.relevantcodes.com'>
+<span>ExtentReports</span>
+</a>
+<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
+</div>
+<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
+<li class='analysis waves-effect'><a href='#!' class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a></li>
+</ul>
+<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
+<ul class='right hide-on-med-and-down nav-right'>
+<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
+<i class='mdi-hardware-desktop-windows'></i>
+</li>
+<li>
+<span class='suite-started-time'>2019-04-02 16:29:19</span>
+</li>
+<li>
+<span>v2.40.2</span>
+</li>
+</ul>
+</nav>
+<!-- /nav -->
+
+<!-- container -->
+<div class='container'>
+
+<!-- dashboard -->
+<div id='dashboard-view' class='row'>
+<div class='time-totals'>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-tests'> 
+<span class='panel-name'>Total Tests</span> 
+<span class='total-tests'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s6'>
+<div class='card suite-total-steps'> 
+<span class='panel-name'>Total Steps</span> 
+<span class='total-steps'> <span class='panel-lead'></span> </span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-current'> 
+<span class='panel-name'>Total Time Taken (Current Run)</span> 
+<span class='suite-total-time-current-value panel-lead'>1h 58m 26s+298ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s12'>
+<div class='card suite-total-time-overall'> 
+<span class='panel-name'>Total Time Taken (Overall)</span> 
+<span class='suite-total-time-overall-value panel-lead'>305h 18303m 1098186s+182ms</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-start-time'>
+<div class='card accent green-accent'> 
+<span class='panel-name'>Start</span> 
+<span class='panel-lead suite-started-time'>2019-04-02 14:30:53</span> 
+</div> 
+</div>
+<div class='col l2 m4 s6 suite-end-time'>
+<div class='card accent pink-accent'> 
+<span class='panel-name'>End</span> 
+<span class='panel-lead suite-ended-time'>2019-04-02 16:29:19</span> 
+</div> 
+</div>
+</div>
+<div class='charts'>
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Tests View</span>
+</div> 
+<div class='panel-setting modal-trigger test-count-setting right'>
+<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='test-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
+</div> 
+<div>
+<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div> 
+<div class='col s12 m6 l4 fh'> 
+<div class='card-panel'> 
+<div>
+<span class='panel-name'>Steps View</span>
+</div> 
+<div class='panel-setting modal-trigger step-status-filter right'>
+<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
+</div> 
+<div class='chart-box'>
+<canvas class='text-centered' id='step-analysis'></canvas>
+</div> 
+<div>
+<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
+</div> 
+<div>
+<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
+</div> 
+</div> 
+</div>
+<div class='col s12 m12 l4 fh'> 
+<div class='card-panel'> 
+<span class='panel-name'>Pass Percentage</span> 
+<span class='pass-percentage panel-lead'></span> 
+<div class='progress light-blue lighten-3'> 
+<div class='determinate light-blue'></div> 
+</div> 
+</div> 
+</div>
+</div>
+<div class='system-view'>
+<div class='col l4 m12 s12'>
+<div class='card-panel'>
+<span class='label info outline right'>Environment</span>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Mac OS X</td>
+</tr>
+<tr>
+<td>User Name</td>
+<td>sakeerthi</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>1.8.0_181</td>
+</tr>
+<tr>
+<td>Host Name</td>
+<td>Sakthis-MacBook-Pro.local</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- /dashboard -->
+
+<!-- tests -->
+<div id='test-view' class='row _addedTable'>
+<div class='col _addedCell1'>
+<div class='contents'>
+<div class='card-panel heading'>
+<h5>Tests</h5>
+</div>
+<div class='card-panel filters'>
+<div>
+<a data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#' class='dropdown-button button tests-toggle'><i class='mdi-action-subject icon'></i></a>
+<ul id='tests-toggle' class='dropdown-content'>
+<li class='pass'><a href='#!'>Pass</a></li>
+<li class='fail'><a href='#!'>Fail</a></li>
+<li class='skip'><a href='#!'>Skip</a></li>
+<li class='divider'></li>
+<li class='clear'><a href='#!'>Clear Filters</a></li>
+</ul>
+</div>
+<div>
+<a id='clear-filters' alt='Clear Filters' title='Clear Filters'><i class='mdi-navigation-close icon'></i></a>
+</div>
+<div>&nbsp;&middot;&nbsp;</div>
+<div>
+<a id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'><i class='mdi-action-track-changes icon'></i></a>
+</div>
+<div>
+<a id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters' class='enabled'><i class='mdi-navigation-refresh icon'></i></i></a>
+</div>
+<div>&nbsp;&middot;</div>
+<div class='search' alt='Search Tests' title='Search Tests'>
+<div class='input-field left'>
+<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
+</div>
+<i class='mdi-action-search icon'></i>
+</div>
+</div>
+<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+<div class='wrapper'>
+<ul id='test-collection' class='test-collection'>
+<li class='collection-item test displayed active pass ' extentid='9c24c9ed-df44-4d63-bdac-3f68e0e5033c'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:30:53</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:31:32</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 39s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:31:00</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:31:26</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:31:32</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='91a4d2f3-b648-46bd-9949-3af14b70f78a'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:31:37</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:32:27</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 50s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:04</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:15</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:17</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:27</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='4a00edbf-27b9-458f-9789-98439391653f'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:32:32</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:33:06</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 34s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:49</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:56</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:32:58</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:33:06</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='0b1f2aaa-43e9-47d9-bc04-a6425b347cbf'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:33:11</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:33:41</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:33:16</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:33:23</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:33:26</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:33:41</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='9acd9296-cd91-4b23-a405-5b7491025900'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:33:46</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:34:19</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 33s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:33:56</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:01</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:12</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:14</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:19</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ccbdc4f8-52e5-45cb-8d40-0a560c981de8'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:34:24</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:35:03</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 39s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:46</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:51</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:54</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:56</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:34:58</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:35:03</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='54d65fcf-e752-426d-a36e-650d27b4d798'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:36:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:36:34</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 28s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:36:11</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:36:28</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:36:34</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='1718d7dd-7ba7-45bd-946e-fdf82b760809'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:36:39</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:37:16</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 37s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:36:56</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:04</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:06</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:16</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='d92f16d7-fa83-4e2c-b9a3-9c091e44c7bb'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:37:21</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:37:50</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:31</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:40</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:42</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:37:50</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='d854eb25-9f1d-4ba0-b6c9-75aa0cba4af3'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:37:55</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:38:46</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 51s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:38:18</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:38:27</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:38:31</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:38:46</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='46502a5a-a21b-4d19-a3f1-a02c7a3d9117'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:38:51</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:39:24</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 33s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:01</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:06</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:17</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:19</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:24</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='dcd990fc-f2c9-4dd6-a3ce-760742812bf3'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:39:29</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:40:10</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 41s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:53</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:39:58</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:00</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:02</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:04</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:10</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='a31629a8-a70b-413a-9664-97197f0d62e5'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:40:15</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:40:59</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 44s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:44</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:49</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:51</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:53</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:40:59</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='b53b4acf-e48b-44e2-993b-9ae099c1b675'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:41:04</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:41:24</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:13</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:17</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:19</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:24</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='36a46d7c-d5a0-4f84-aea3-288dfab90898'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:41:29</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:41:49</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:38</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:42</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:44</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:41:49</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='e66e1843-ef5f-4d91-968a-a97f341dac4a'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:41:54</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:43:17</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 23s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:42:00</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:42:17</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:42:28</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:42:59</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:43:06</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:43:12</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:43:17</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='919f482d-07b2-481a-b412-d801b4417f34'>
+<div class='test-head'>
+<span class='test-name'>logout </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:43:22</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:44:08</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 46s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:43:28</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:43:45</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:44:02</td>
+<td class='step-details'>Logged out of the application</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:44:08</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ef7d8c4c-e0c9-4dd1-9e85-fce0f114c5f4'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:47:27</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:48:05</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 38s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:47:38</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:47:59</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:48:05</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='1cfdfac4-2c7b-421f-b694-aa1747717a27'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:48:10</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:48:35</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 25s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:48:17</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:48:24</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:48:26</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:48:35</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='a18fb6c5-754e-4683-a109-0b91e43b51c7'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:48:40</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:49:10</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:48:53</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:01</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:03</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:10</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='50ae15af-8b7f-4cc9-ab0f-5bbf8a06eeb6'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:49:15</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:49:52</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 37s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:27</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:34</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:36</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:49:52</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='5494c13f-b39c-4ef4-a7d9-f251b6e760a7'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:49:57</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:50:25</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 28s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:02</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:06</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:17</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:19</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:25</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ae53d416-f795-41c2-bb2e-9c3975fc0e37'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:50:30</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:50:51</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 21s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:36</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:40</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:42</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:44</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:46</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:50:51</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='0fa5b891-ae52-4e58-8763-979c16629af8'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:50:57</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:51:20</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 23s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:06</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:10</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:13</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:15</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:20</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='9392938d-8c97-411f-aad2-3b68f5e880fe'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:51:25</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:51:41</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 16s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:30</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:34</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:36</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:41</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='e6b775e6-abac-4ccf-bc14-f8123da46bb2'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:51:46</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:52:06</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:54</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:51:58</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:52:00</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:52:06</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='139cc847-30ff-4220-b196-0064d53a3a4c'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:52:11</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:53:40</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:52:22</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:52:40</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:52:50</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:53:22</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:53:29</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:53:35</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:53:40</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='72bc0db1-983a-475e-944d-05e70b8eec7a'>
+<div class='test-head'>
+<span class='test-name'>logout </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:53:45</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 14:54:28</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 43s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:53:49</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:54:05</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:54:22</td>
+<td class='step-details'>Logged out of the application</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:54:28</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='6cbfa213-b312-4f4b-8304-f4d9bfdef783'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 14:59:47</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:00:16</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>14:59:52</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:11</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:16</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='a4ce4879-9923-425b-8ec5-10a73e93601f'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:00:22</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:00:46</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 24s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:27</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:35</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:37</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:46</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='3ecdf3a0-a51e-4349-8b39-d3ab67cfa0a1'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:00:51</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:01:14</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 23s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:00:57</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:04</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:06</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:14</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='c368267d-5e08-48eb-b645-3afce84ac577'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:01:19</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:01:58</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 39s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:33</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:40</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:42</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:01:58</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='3387c940-68d6-411b-a145-c0e50a116e96'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:02:03</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:02:32</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:10</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:14</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:25</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:27</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:32</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='6686cce4-07da-4ec1-9351-da8bc5d9caaa'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:02:37</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:02:57</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:41</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:45</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:47</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:50</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:52</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:02:57</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='cb34848d-3dc0-4d6a-b03e-fbe1c870c0c8'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:03:02</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:03:20</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:06</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:10</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:12</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:15</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:20</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='b3b21cf9-ecfa-412f-a187-cbffb5cd05d0'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:03:25</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:03:41</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 16s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:30</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:34</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:36</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:41</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='93bdd820-2499-4c3b-8e63-ea32744556ef'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:03:46</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:04:02</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 16s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:51</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:55</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:03:57</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:04:02</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='7d8bd944-f300-4383-9347-044993cdd4a9'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:04:07</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:05:30</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 23s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:04:12</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:04:29</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:04:40</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:05:12</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:05:18</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:05:24</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:05:30</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='880fa6ed-b0d4-449d-999b-5c02d26f5479'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:08:13</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:09:01</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 48s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:08:32</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:08:55</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:09:01</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='3ff1703d-15bd-4923-95b2-37561d0020e7'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:09:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:09:39</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 33s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:09:19</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:09:27</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:09:29</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:09:39</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='4a948f7a-b72d-4df3-9de0-78ebaa215015'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:09:44</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:10:13</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 29s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:09:56</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:04</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:06</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:13</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='83b1af57-0c96-4cd9-9458-ec7a1b1631ef'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:10:18</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:10:55</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 37s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:30</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:37</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:39</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:10:55</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='1fa894cb-d992-410b-8c3a-ce879d70e198'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:11:00</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:11:34</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 34s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:12</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:16</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:27</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:29</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:34</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='149da6e1-44fe-4cd8-a760-4f4ccb968995'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:11:39</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:12:51</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 12s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:46</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:51</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:53</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:55</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:11:57</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:12:51</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='9a76064b-5192-40de-b158-54cc00314757'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:12:56</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:13:30</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 34s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:16</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:21</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:23</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:25</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:30</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='623fbc8a-6753-47c9-bd1d-a16d5ccf1ea7'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:13:36</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:14:03</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 27s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:50</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:56</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:13:58</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:03</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='09a6f9ac-36f1-40b8-ac01-c0f15f2ed213'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:14:08</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:14:25</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 17s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:13</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:17</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:19</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:25</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='96adda64-6ee1-4023-ba0b-1ee83ac83752'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:14:30</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:15:50</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:34</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:14:50</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:15:00</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:15:32</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:15:38</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:15:44</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:15:50</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='18fc5dd7-1611-43fd-a1f3-e9a5dead4b28'>
+<div class='test-head'>
+<span class='test-name'>logout </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:15:55</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:16:52</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 57s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:16:09</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:16:29</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:16:47</td>
+<td class='step-details'>Logged out of the application</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:16:52</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='f47267b9-41f4-49b5-afe0-07a98f36da8d'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:20:55</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:21:39</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 44s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:21:14</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:21:34</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:21:39</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='43ccf383-0ac2-424f-98a5-7bccdc737e91'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:35:55</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:36:28</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 33s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:05</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:23</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:28</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='90d02dbc-c009-44e7-8dce-945fc53950b1'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:36:34</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:36:58</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 24s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:40</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:47</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:49</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:36:58</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='70dab9e9-f0be-45a0-8882-2e892b2ec561'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:37:03</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:37:28</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 25s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:11</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:19</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:21</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:28</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='1e6c3641-69d8-4bb4-913c-f093f1c9ed56'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:37:33</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:38:03</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:38</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:45</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:37:47</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:03</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='30765425-9112-4015-a378-7b933a83b325'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:38:08</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:38:36</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 28s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:13</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:18</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:28</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:30</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:36</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='b4e97c0d-c08a-44a4-8fc8-cb0e7eba2642'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:38:41</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:39:02</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 21s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:45</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:50</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:52</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:54</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:38:56</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:02</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='5cf7e927-7a23-4190-9098-7158e68f6a26'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:39:07</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:39:31</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 24s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:18</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:22</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:24</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:26</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:31</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='68c17340-ca9d-40b0-a838-a8d1c82e1789'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:39:37</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:39:53</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 16s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:41</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:45</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:47</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:39:53</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ff11a47f-9d1d-45d7-9947-ddf521c59a12'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:39:58</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:40:14</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 16s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:02</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:07</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:09</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:14</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='3bb2d45f-7f68-4499-9e4c-e950c1a29f5c'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:40:19</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:41:42</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 23s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:25</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:42</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:40:52</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:41:24</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:41:31</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:41:37</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:41:42</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='fd9440e4-7de4-4b87-b798-ea7379beb895'>
+<div class='test-head'>
+<span class='test-name'>logout </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:41:47</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:42:31</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 44s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:41:52</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:42:09</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:42:26</td>
+<td class='step-details'>Logged out of the application</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:42:31</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='1c228825-d405-4425-a1fd-ae2dc3e32684'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:47:06</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:47:45</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 39s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:47:19</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:47:40</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:47:45</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='aeea0558-6efa-4b0a-babd-72032ac0c412'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:47:50</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:48:20</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 30s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:01</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:08</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:10</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:20</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='c1b3ef1e-03a8-453a-9798-70d3b5debb8f'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:48:25</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:48:51</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 26s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:35</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:42</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:44</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:48:51</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='210df575-81db-4b39-bd26-b178df8f319d'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:48:56</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:49:27</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 31s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:02</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:09</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:11</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:27</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='5d3707df-cd62-4af8-b691-0bea4970e2fd'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:49:32</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:50:00</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 28s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:38</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:42</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:52</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:49:54</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:00</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='710c189f-17f2-49b0-b385-36176565c2db'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:50:05</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:50:29</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 24s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:13</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:17</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:19</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:22</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:24</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:29</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='836cf043-899f-48d4-93b4-0a636d43321f'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:50:34</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:51:12</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 38s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:50:58</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:03</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:05</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:07</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:12</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ea761e41-48d6-42bf-8036-e0474531696c'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:51:17</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:51:57</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 40s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:42</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:48</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:51</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:51:57</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='1328f176-8fcf-43a0-b1dc-08f06ede3c0b'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:52:02</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:52:20</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 18s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:52:07</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:52:12</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:52:14</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:52:20</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='7f866e87-03a3-4d49-a10a-74e1b18076a9'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:52:25</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:54:23</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 58s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:52:52</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:53:20</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:53:31</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:54:05</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:54:11</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:54:17</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:54:23</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='46ebcd24-da34-4fac-86fe-df2c62ff892e'>
+<div class='test-head'>
+<span class='test-name'>logout </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 15:54:28</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 15:55:32</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 4s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:54:45</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:55:08</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:55:27</td>
+<td class='step-details'>Logged out of the application</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>15:55:32</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='f69db9cc-6654-4292-9e90-fd93cd58d6a1'>
+<div class='test-head'>
+<span class='test-name'>ValidLogin </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:20:19</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:20:51</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 32s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:29</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:45</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:20:51</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='8bcb147f-eeab-41c3-9d1d-91290e33f84c'>
+<div class='test-head'>
+<span class='test-name'>WrongPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:20:56</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:21:23</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 27s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:04</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:11</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:14</td>
+<td class='step-details'>password Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:23</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='9dff5662-7979-4f73-a4c0-0d8eb7960b3e'>
+<div class='test-head'>
+<span class='test-name'>WrongUN </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:21:28</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:21:53</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 25s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:36</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:44</td>
+<td class='step-details'>Username Entered Wrongly</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:46</td>
+<td class='step-details'>password Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:21:53</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='bf4e1ef0-6387-4d52-8b39-c71ba4f3c1d8'>
+<div class='test-head'>
+<span class='test-name'>ForgotPswd </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:21:59</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:22:36</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 37s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:11</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:18</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:20</td>
+<td class='step-details'>Forgot password clicked</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:36</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='12a96552-aa8c-45ff-a7fe-e0d46d26f8ed'>
+<div class='test-head'>
+<span class='test-name'>SignUp </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:22:41</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:23:09</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 28s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:47</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:22:51</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:02</td>
+<td class='step-details'>Registration details entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:04</td>
+<td class='step-details'>Getting started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:09</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='51915561-cbe7-4fa9-a744-bf666336b523'>
+<div class='test-head'>
+<span class='test-name'>SignupXdc </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:23:15</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:23:39</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 24s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:22</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:27</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:29</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:31</td>
+<td class='step-details'>Username Entered</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:33</td>
+<td class='step-details'>Submit</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:39</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='0d17ff2d-dc9a-4df5-9d86-10aafa75c1e9'>
+<div class='test-head'>
+<span class='test-name'>SignupPrivacy </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:23:44</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:24:07</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 23s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:50</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:23:58</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:00</td>
+<td class='step-details'>terms of use link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:02</td>
+<td class='step-details'>privacy notice link opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:07</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='3dae6557-ce73-48ec-8500-afd987227b6b'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:24:12</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:24:32</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 20s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:19</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:24</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:27</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:32</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='26fbea8f-2f13-4557-95a7-6f3b888bc59f'>
+<div class='test-head'>
+<span class='test-name'>SignupOffer </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:24:37</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:24:56</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 19s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:43</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:48</td>
+<td class='step-details'>entered into Free trial page</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:50</td>
+<td class='step-details'>Accountant page opened</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:24:56</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='d42fd1b4-dd6a-44f3-87e2-899681f8d542'>
+<div class='test-head'>
+<span class='test-name'>tab </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:25:01</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:26:27</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 1m 26s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:08</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:26</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:25:37</td>
+<td class='step-details'>Clicked on Reports</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:09</td>
+<td class='step-details'>hover over on search</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:16</td>
+<td class='step-details'>hover over on +</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:22</td>
+<td class='step-details'>hover over on help</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:27</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='6982bc48-b2e6-48d0-a9b2-d0d3b8aff3aa'>
+<div class='test-head'>
+<span class='test-name'>logout </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:26:32</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:27:19</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 47s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:39</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:26:56</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:14</td>
+<td class='step-details'>Logged out of the application</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:19</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='15637015-14af-448a-a4f5-3a669846b9e6'>
+<div class='test-head'>
+<span class='test-name'>UploadImage </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:27:24</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:28:15</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 51s+0ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:30</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:27:47</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:09</td>
+<td class='step-details'>Image got Uploaded</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:15</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+<li class='collection-item test displayed active pass ' extentid='ed30fa8f-1d5f-4e06-b32c-bc5ddde47d52'>
+<div class='test-head'>
+<span class='test-name'>Account </span>
+<span class='test-status label right outline capitalize pass'>pass</span>
+<span class='category-assigned hide '></span>
+</div>
+<div class='test-body'>
+<div class='test-info'>
+<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2019-04-02 16:28:20</span>
+<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2019-04-02 16:29:19</span>
+<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 58s+561ms</span>
+</div>
+<div class='test-desc'></div>
+<div class='test-attributes'>
+</div>
+<div class='test-steps'>
+<table class='bordered table-results'>
+<thead>
+<tr>
+<th>Status</th>
+<th>Timestamp</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:26</td>
+<td class='step-details'>Application Started</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:28:43</td>
+<td class='step-details'>Logged in with the Valid Credentials</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:29:13</td>
+<td class='step-details'>Retrieving the Account Informations are performed</td>
+</tr>
+<tr>
+<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
+<td class='timestamp'>16:29:19</td>
+<td class='step-details'>Exit from the Application</td>
+</tr>
+</tbody>
+</table>
+<ul class='collapsible node-list' data-collapsible='accordion'>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id='test-details-wrapper' class='col _addedCell2'>
+<div class='contents'>
+<div class='card-panel details-view'>
+<h5 class='details-name'></h5>
+<div class='details-container'>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /tests -->
+
+<!-- categories -->
+<!-- /categories -->
+
+<!-- exceptions -->
+<!-- /exceptions -->
+
+<!-- testrunner logs -->
+<!-- /testrunner logs -->
+
+</div>
+<!-- /container -->
+
+<!-- test dashboard counts setting -->
+<div id='test-count-setting' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Configure Tests Count Setting</h5> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'> 
+<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'> 
+<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label> 
+<br> 
+<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'> 
+<label for='childNodes'>Child Tests Only</label> 
+</div> 
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /test dashboard counts setting -->
+
+<!-- filter for step status -->
+<div id='step-status-filter' class='modal bottom-sheet'> 
+<div class='modal-content'> 
+<h5>Select status</h5> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'> 
+<label for='step-dashboard-filter-pass'>Pass</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'> 
+<label for='step-dashboard-filter-fail'>Fail</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'> 
+<label for='step-dashboard-filter-fatal'>Fatal</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'> 
+<label for='step-dashboard-filter-error'>Error</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'> 
+<label for='step-dashboard-filter-warning'>Warning</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'> 
+<label for='step-dashboard-filter-skip'>Skipped</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'> 
+<label for='step-dashboard-filter-info'>Info</label> 
+<br> 
+<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'> 
+<label for='step-dashboard-filter-unknown'>Unknown</label> 
+</div>
+<div class='modal-footer'> 
+<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a> 
+</div> 
+</div>
+<!-- /filter for step status -->
+
+<script src='https://cdn.rawgit.com/anshooarora/extentreports/c936a26fc8bb9c5fc0253b5bc6f289e1d14bb595/cdn/extent.js' type='text/javascript'></script>
+
+<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
+<script>
+
+            
+                $(document).ready(function() {
+                    
+                });
+            
+        
+</script>
+</body>
+</html>

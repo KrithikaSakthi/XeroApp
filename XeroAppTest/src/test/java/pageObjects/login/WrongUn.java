@@ -13,15 +13,12 @@ public class WrongUn{
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/WrongUN.html","WrongUN");
+		LaunchApp.extentReports("WrongUN");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		
 		LaunchApp.waitTime(30);
 		
-		
-
-
 		WebElement loginPage = driver.findElement(By.xpath("//a[@class='btn btn-tertiary-alt global-ceiling-bar-btn']"));
 		ClickAction.clickButton(loginPage);
 		//enter email address

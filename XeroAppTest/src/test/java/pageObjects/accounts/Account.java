@@ -15,7 +15,8 @@ public class Account{
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/TC 10.html","TC 10");
+		LaunchApp.extentReports("Account");
+		
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		LaunchApp.waitTime(30);
@@ -49,6 +50,7 @@ public class Account{
 		
 		WebElement Search = driver.findElement(By.xpath("//a[@href='/AccountsPayable/Search.aspx']"));
 		ClickAction.clickButton(Search);
+		LaunchApp.getLogger().log(LogStatus.PASS, "Retrieving the Account Informations are performed");
 		
 		LaunchApp.exitApplication();
 	}

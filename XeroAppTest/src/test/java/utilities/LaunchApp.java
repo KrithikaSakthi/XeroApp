@@ -49,11 +49,21 @@ public class LaunchApp {
 	static ExtentTest logger = null;
 	
 	
-	public static void extentReports(String path, String testCase) {
+	/*public static void extentReports(String path,String testCase) {
+		
 		report = new ExtentReports(path);
+		//report = new ExtentReports(System.getProperty("user.dir") + "/test-output/XeroAppReport.html", false);
 		logger = report.startTest(testCase);
-	}
+		
+	}*/
 	
+	public static void extentReports(String testCase ) {
+		
+		//report = new ExtentReports(path);
+		report = new ExtentReports(System.getProperty("user.dir") + "/test-output/XeroAppReport.html", false);
+		logger = report.startTest(testCase);
+		
+	}
 
 	public static void startApplication() throws Exception {
 		
@@ -69,7 +79,7 @@ public class LaunchApp {
 			driver = new FirefoxDriver();	
 		}else if(browserName.equals("Safari"))
 		{
-			System.setProperty("webdriver.gecko.driver", "/Users/sakeerthi/Documents/geckodriver");
+			System.setProperty("webdriver.gecko.driver", "/Users/sakeerthi/Documents/Safaridriver");
 			driver = new SafariDriver();	
 		}
 		else

@@ -15,15 +15,12 @@ public class ForgotPswd {
 	public static void test(String[][] excelData) throws Exception {
 		
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/ForgotPswd.html","ForgotPswd");
+		LaunchApp.extentReports("ForgotPswd");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		
 		LaunchApp.waitTime(30);
-		
-		LaunchApp.extentReports("test-output/ForgotPswd.html","ForgotPswd");
-
-
+	
 		WebElement loginPage = driver.findElement(By.xpath("//a[@class='btn btn-tertiary-alt global-ceiling-bar-btn']"));
 		ClickAction.clickButton(loginPage);
 		//enter email address

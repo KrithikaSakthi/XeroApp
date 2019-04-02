@@ -16,7 +16,7 @@ public class ValidLogin {
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/ValidLogin.html","ValidLogin");
+		LaunchApp.extentReports("ValidLogin");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		

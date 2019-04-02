@@ -14,7 +14,7 @@ public class WrongPswd{
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/WrongPswd.html","WrongPswd");
+		LaunchApp.extentReports("WrongPswd");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();
 		

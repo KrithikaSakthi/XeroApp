@@ -8,10 +8,12 @@ import pageObjects.orgPlan.OrgPlan;
 import pageObjects.tab.Tab;
 import pageObjects.uploadImage.UploadImage;
 import utilities.ExcelData;
+import utilities.LaunchApp;
 
 public class TestXeroApp {
 
 	public static void main(String[] args) throws Exception {
+		
 		String dt_path = "/Users/sakeerthi/Documents/ModuleData.xls";
 		String[][] excelData = ExcelData.readExcelData(dt_path, "Sheet1");
 		

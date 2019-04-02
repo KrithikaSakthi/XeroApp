@@ -14,7 +14,7 @@ public class SignUpXdc {
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/SignupXdc.html","SignupXdc");
+		LaunchApp.extentReports("SignupXdc");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();	
 		LaunchApp.waitTime(30);

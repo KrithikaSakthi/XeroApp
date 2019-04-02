@@ -13,7 +13,7 @@ public class SignUpPrivacy{
 
 	public static void test(String[][] excelData) throws Exception {
 		WebDriver driver;
-		LaunchApp.extentReports("test-output/SignupPrivacy.html","SignupPrivacy");
+		LaunchApp.extentReports("SignupPrivacy");
 		LaunchApp.startApplication();
 		driver = LaunchApp.getDriver();	
 		LaunchApp.waitTime(30);
